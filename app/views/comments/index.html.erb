@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<div class="new_form_properties">
+  <table class="table-responsive">
+    <thead>
+      <tr>
+        <th>Commenter</th>
+        <th>Body</th>
+        <th>Post</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+      <td><%= comment.commenter %></td>
+      <td><%= comment.body %></td>
+      <td><%= link_to 'posts',posts_path%></td>
+      <!-- /posts/:post_id/comments/:id -->
+      <td><%= link_to 'Show', [comment.post, comment] %>
+      <!-- /posts/:post_id/comments/:id/edit -->
+      <%= link_to 'Edit', edit_post_comment_path(comment.post, comment)%>
+      <!-- /posts/:post_id/comments/:id -->
+      <%= link_to 'Destroy', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+<%= link_to '<button type="button">New Comment</button>'.html_safe, new_post_comment_path %>
+
+<!-- /posts/:post_id/comments/new -->
