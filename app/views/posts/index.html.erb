@@ -18,15 +18,19 @@
       <tr>
          <td><%= post.name %></td>
         <td><%= post.title %></td>
-        <td><%= post.content %></td>
-              <ul><%= post.comments.each do |comment | %>
-                
-              <li><%= comment.commenter %></li>
-              <li><%= comment.body %></li>
-              <% end %>
+        <td><%= post.content %>
+             <table>
+                <tr>
+                  <ul><%= post.comments.each do |comment | %>
+                    
+                  <li><%= comment.commenter %></li>
+                  <li><%= comment.body %></li>
+                  <% end %>
 
-              </ul>
-
+                  </ul>
+                </tr>
+            </table>
+        </td>
         <td><%= link_to 'comments',new_post_comment_path(post)%></td>
         <td><%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
