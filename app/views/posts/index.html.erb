@@ -19,11 +19,13 @@
          <td><%= post.name %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-              <ul><%= post.comments.each do |comment | %></ul>
-              <li><%= comment.name %></li>
-              <li><%= comment.description %></li>
+              <ul><%= post.comments.each do |comment | %>
+                
+              <li><%= comment.commenter %></li>
+              <li><%= comment.body %></li>
               <% end %>
 
+              </ul>
 
         <td><%= link_to 'comments',new_post_comment_path(post)%></td>
         <td><%= link_to 'Show', post %>
