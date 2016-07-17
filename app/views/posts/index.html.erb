@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>Title</th>
       <th>Content</th>
+      <th>Add comments</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -33,6 +34,7 @@
             </table>
             <% end %>
         </td>
+        <td><%= link_to 'Add comments', new_post_comment_path %></td>
         <td><%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
