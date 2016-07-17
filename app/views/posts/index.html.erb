@@ -22,6 +22,7 @@
               <ul><%= post.comments.each do |comment | %></ul>
               <li><%= comment.name %></li>
               <li><%= comment.description %></li>
+              <% end %>
 
 
         <td><%= link_to 'comments',new_post_comment_path(post)%></td>
