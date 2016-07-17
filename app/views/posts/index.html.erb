@@ -21,11 +21,16 @@
              
               <%= post.comments.each do |comment| %>
                 <table>
+                  <thead>
                   <tr>
-                  <td><%= comment.commenter %></td>
+                  <th><%= comment.commenter %></th>
+                  </tr>
+                  <tbody>
+                  <tr>
                   <td><%= comment.body %></td>
                   <td><%= link_to 'comments',new_post_comment_path(post)%></td>
                 </tr>
+                </tbody>
             </table>
             <% end %>
         </td>
