@@ -28,7 +28,7 @@
                   <tbody>
                   <tr>
                   <td><%= comment.body %></td>
-                  <td><%= link_to 'comments',new_post_comment_path(post)%></td>
+                  <td><%= render 'comments/form' %></td>
                 </tr>
                 </tbody>
             </table>
