@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>Title</th>
       <th>Content</th>
+      <th> comments </th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -19,20 +20,21 @@
         <td><%= post.title %></td>
         <td><%= post.content %>
              
-              <%= post.comments.each do |comment| %>
+              <% post.comments.each do |comment| %>
                 <table>
                   <thead>
                   <tr>
-                  <th><%= comment.commenter %></th>
+                  <th><% comment.commenter %></th>
                   </tr>
                   <tbody>
                   <tr>
-                  <td><%= comment.body %></td>
+                  <td><% comment.body %></td>
                 </tr>
                 </tbody>
             </table>
             <% end %>
         </td>
+        <td><%= link_to 'comments' </td>
         <td><%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
