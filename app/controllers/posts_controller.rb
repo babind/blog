@@ -10,6 +10,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @new_comment = @post.comments.new
+
   end
 
   # GET /posts/new
@@ -69,6 +73,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :title, :content,comments_attributes:[:commentor, :body,:id])
+      params.require(:post).permit(:name, :title, :content,
+        comment: [:commentor, :body, :post_id])
     end
 end

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_post
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+before_action :set_post  
+before_action :set_comment, only: [:show, :edit, :update, :destroy]
   
   def set_post
     @post = Post.find(params[:post_id])
@@ -34,34 +34,47 @@ class CommentsController < ApplicationController
   end
 
   def new
-     @comment = @post.comments.build
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @comment }
-    end
+     @post = Post.find(params[:post_id])
+     @new_comment = @post.comments.new
+  
+    # respond_with(@post,@new_comment)
   end
 
-  def edit
-     @comment = @post.comments.find(params[:id])
-  end
+ 
 
   def create
-      # @comment = @post.comments.create(params[:comment])
-      @comment = @post.comments.new(comment_params)
-    respond_to do |format|
-      if @comment.save
-        #1st argument of redirect_to is an array, in order to build the correct route to the nested resource comment
-        format.html { redirect_to([@comment.post, @comment], :notice => 'Comment was successfully created.') }
-        #the key :location is associated to an array in order to build the correct route to the nested resource comment
-        format.xml  { render :xml => @comment, :status => :created, :location => [@comment.post, @comment] }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
-      end
-    end
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(params[:comment])
   end
+
+
+   def edit
+     @comment = @post.comments.find(params[:id])
+  end
+ 
+ # def create
+ #    @post = Post.find(params[:post_id])
+ #    @comment = @post.comments.create(params[:comment])
+
+ #    respond_to do |format|
+ #        format.html { redirect_to post_path(@post) }
+ #        format.js 
+ #    end
+ #  end
   
+  # def create
+  #     # @comment = @post.comments.create(params[:comment])
+  #     @comment = @post.comments.new(comment_params)
+  #     if @comment.save
+  #         respond_to do |format|
+  #           format.html do 
+  #               flash[:success] = ' Comment posted.'
+  #               redirect_to @post
+  #             end 
+  #             format.js 
+  #           end 
+  #         end
+  #       end  
     def update
        @comment = @post.comments.find(params[:id])
 
