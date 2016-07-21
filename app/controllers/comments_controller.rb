@@ -36,15 +36,21 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
   def new
      @post = Post.find(params[:post_id])
      @new_comment = @post.comments.new
-  
-    # respond_with(@post,@new_comment)
+
+
   end
 
  
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(params[:comment])
+    @comment = @post.comments.new(comment_params)
+      if @comment.save
+      respond_to do |format|
+          format.html
+          format.js
+      end
+    end  
   end
 
 
@@ -52,29 +58,7 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
      @comment = @post.comments.find(params[:id])
   end
  
- # def create
- #    @post = Post.find(params[:post_id])
- #    @comment = @post.comments.create(params[:comment])
-
- #    respond_to do |format|
- #        format.html { redirect_to post_path(@post) }
- #        format.js 
- #    end
- #  end
-  
-  # def create
-  #     # @comment = @post.comments.create(params[:comment])
-  #     @comment = @post.comments.new(comment_params)
-  #     if @comment.save
-  #         respond_to do |format|
-  #           format.html do 
-  #               flash[:success] = ' Comment posted.'
-  #               redirect_to @post
-  #             end 
-  #             format.js 
-  #           end 
-  #         end
-  #       end  
+ 
     def update
        @comment = @post.comments.find(params[:id])
 
