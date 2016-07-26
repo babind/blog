@@ -26,11 +26,11 @@
                 <table>
                   <thead>
                   <tr>
-                  <th><%= comment.commenter %></th>
-                  </tr>
+                  <th><%= comment.commenter %> comments <%=link_to comment.body, new_post_comment_path(post,:anchor=>'comments/form') %>
+                  </tr></th>
                   <tbody>
                   <tr>
-                   <td><%=link_to comment.body, new_post_comment_path(post,:anchor=>'comments/form') %></td>
+                   <td></td>
                 </tr>
 
   
@@ -40,7 +40,7 @@
         </td>
             <td>
         <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

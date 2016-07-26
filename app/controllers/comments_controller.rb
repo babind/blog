@@ -13,7 +13,7 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
   end
 
     def comment_params
-      params.require(:comment).permit(:commenter, :body)
+      params.require(:comment).permit(:commenter, :body,:post_id)
     end
 
   def index
@@ -25,6 +25,7 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
   end
 
   def show
+
      @comment = @post.comments.find(params[:id])
 
     respond_to do |format|
@@ -55,7 +56,9 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
 
    def edit
-     @comment = @post.comments.find(params[:id])
+      
+      @post = Post.find(params[:post_id])
+     @new_comment = @post.comments.find(params[:id])
   end
  
  
