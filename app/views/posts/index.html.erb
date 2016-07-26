@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Title</th>
       <th>Content</th>
-      <th>Add comments</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,14 +30,15 @@
                   </tr>
                   <tbody>
                   <tr>
-                  <td><%= comment.body %></td>
+                   <td><%=link_to comment.body, new_post_comment_path(post,:anchor=>'comments/form') %></td>
                 </tr>
+
+  
                 </tbody>
             </table>
             <% end %>
         </td>
-        <td><%= link_to 'Add comments', new_post_comment_path(post) %></td>
-        <td>
+            <td>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
