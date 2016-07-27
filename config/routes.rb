@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 # match 'auth/failure', to: redirect('/'), via: [:get, :post]
 # match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+match '/auth/:provider/callback' => 'sessions#create', via: [:post,:get]
 
 match '/signout' => 'sessions#destroy', :as => :signout, via: [:get, :post]
 
-match '/signin' => 'sessions#new', :as => :signin , via: [:get, :post]
+match '/signin' => 'sessions#new', :as => :signin , via: [:get]
 
  root 'posts#index'
 resources :posts
