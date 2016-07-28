@@ -5,6 +5,12 @@ jQuery ->
 window.fbAsyncInit = ->
   FB.init(appId: '<%= ENV["FACEBOOK_APP_ID"] %>', cookie: true)
 
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    var accessToken = response.authResponse.accessToken;
+  } 
+} );
+
   $.ajax
     url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
     dataType: 'script'
