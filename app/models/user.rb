@@ -7,6 +7,9 @@ class User < ApplicationRecord
 			      user.name = auth['info']['name'] || ""
 			      user.email = auth['info']['email'] || ""
 			    end
+			    if auth['crede ntials']
+			    	user.oauth_token = auth['credentials']['token']
+			    	user.oauth_expires_at = auth['credentials']['expires_at']
 			  end
 			end
 
