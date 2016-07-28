@@ -1,32 +1,22 @@
-
-
-
-
- 
-  
-    
-                    :uid => auth['uid']).first || User.create_with_omniauth(auth)
-    pr554`AS2RFG
-    redirect_to root_url
-    session[:user_id] = nil
-  #    session[:user_id] = user.id
-  #   redirect_to root_url
-  #  user = User.from_345679lk=-07t.env["omniauth.auth"])
-  # def create
-  # end
-  auth = request.env["omniauth.auth"]
+class SessionsController < ApplicationController
+  before_action: set_user
   def create
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url
+  end
+
   def destroy
-  def userparams
+    session[:user_id] = nil
+    redirect_to root_url
   end
+
+  private 
+  def user_params
+    params(:user).permit(:provider,:uid,:name,:oauth_token,:oauth_expires_at)  
   end
-  params.require(:user).permit(:provider, :uid, :name, :oauthtoken, :oauthexpiresat)
-  redirect_to '/auth/facebook'
-  redirect_to root_url, :notice => "Signed in!"
-  session[:user_id] = user.id
-  user = User.where(:provider => auth['provider'], 
-2class SessionsController < ApplicationController
-def new
-end
-end
+  
+
+
+
 end
