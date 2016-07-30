@@ -20,13 +20,32 @@
         </td>
         <td><%= post.content %>
              
+                     <%= form_for([post, post.comments.build])  do |f| %>
+                          <%= render 'shared/error_messages', object: f.object %>
+
+
+                          <div class="field">
+                            <%= f.label :commenter %><br />
+                            <%= f.text_field :commenter %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :body %><br />
+                            <%= f.text_area :body %>
+                          </div>
+                          <div class="actions">
+                            <%= f.submit %>
+                          </div>
+                        <% end %>
+
 
               <% post.comments.each do |comment| %>
+                <% if post.comments.exists %>
 
                 <table>
                   <thead>
+ 
                   <tr>
-                  <th><%= comment.commenter %> comments <%=link_to comment.body, new_post_comment_path(post,:anchor=>'comments/form') %>
+                  <th><%= comment.commenter %> comments <%= comment.body %>
                   </tr></th>
                   <tbody>
                   <tr>
@@ -36,6 +55,7 @@
   
                 </tbody>
             </table>
+            <% end %>
             <% end %>
         </td>
             <td>

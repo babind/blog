@@ -37,8 +37,6 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
   def new
      @post = Post.find(params[:post_id])
      @new_comment = @post.comments.new
-
-
   end
 
  
@@ -48,8 +46,9 @@ before_action :set_comment, only: [:show, :edit, :update, :destroy]
     @comment = @post.comments.new(comment_params)
       if @comment.save
       respond_to do |format|
-          format.html
+          format.html {redirect_to posts_path }
           format.js
+          format.json{ render json: @comment}
       end
     end  
   end
